@@ -1902,6 +1902,104 @@
       margin: 6px auto 0
     }
 
+    /* Finale Card: Dancing Couple Beneath the Blossoms */
+    .finale-dancer-fo {
+      overflow: visible !important;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .finale-dancer-wrap {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      transform-origin: 50% 95%;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .finale-dancer-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      transform-origin: 50% 95%;
+      animation: finaleDanceWaltz 4.5s ease-in-out infinite;
+      filter: drop-shadow(0 8px 18px rgba(110, 25, 45, 0.24));
+      will-change: transform;
+      transition: filter 0.35s ease, transform 0.35s ease;
+    }
+
+    .finale-dancer-fo:hover .finale-dancer-img,
+    .finale-dancer-fo:focus-visible .finale-dancer-img {
+      filter: drop-shadow(0 12px 24px rgba(110, 25, 45, 0.38)) drop-shadow(0 0 14px rgba(255, 215, 225, 0.7));
+    }
+
+    /* Waltz animation: graceful sway, subtle lift, soft 3D rotation */
+    @keyframes finaleDanceWaltz {
+      0% {
+        transform: translateY(0) rotate(-1.5deg) scaleX(1);
+      }
+      25% {
+        transform: translateY(-5px) rotate(0deg) scaleX(1.01) perspective(700px) rotateY(4deg);
+      }
+      50% {
+        transform: translateY(0) rotate(1.5deg) scaleX(1);
+      }
+      75% {
+        transform: translateY(-5px) rotate(0deg) scaleX(1.01) perspective(700px) rotateY(-4deg);
+      }
+      100% {
+        transform: translateY(0) rotate(-1.5deg) scaleX(1);
+      }
+    }
+
+    /* Celebratory spin twirl when clicked/tapped */
+    .finale-dancer-img.is-twirling {
+      animation: finaleDanceSpin 1.35s cubic-bezier(0.25, 1, 0.35, 1) forwards !important;
+    }
+
+    @keyframes finaleDanceSpin {
+      0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+      }
+      25% {
+        transform: translateY(-15px) rotate(-10deg) scale(1.06);
+      }
+      65% {
+        transform: translateY(-7px) rotate(350deg) scale(1.03);
+      }
+      100% {
+        transform: translateY(0) rotate(360deg) scale(1);
+      }
+    }
+
+    .finale-ground-shadow {
+      animation: finaleShadowPulse 4.5s ease-in-out infinite;
+      transform-origin: 182px 328px;
+    }
+
+    @keyframes finaleShadowPulse {
+      0%, 50%, 100% {
+        transform: scaleX(1);
+        opacity: 0.26;
+      }
+      25%, 75% {
+        transform: scaleX(0.9);
+        opacity: 0.18;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .finale-dancer-img,
+      .finale-ground-shadow {
+        animation: none !important;
+      }
+    }
+
     #finale .sign {
       margin-top: 8px
     }
@@ -2652,6 +2750,7 @@
       0% {
         transform: translateX(-50%) rotate(-1deg);
       }
+
       100% {
         transform: translateX(-50%) rotate(1.2deg);
       }
@@ -2679,6 +2778,7 @@
       0% {
         transform: scale(1);
       }
+
       100% {
         transform: scale(1.02, 1.015);
       }
@@ -2700,6 +2800,7 @@
       0% {
         transform: rotate(0deg);
       }
+
       100% {
         transform: rotate(-2.5deg);
       }
@@ -2709,6 +2810,7 @@
       0% {
         transform: rotate(0deg);
       }
+
       100% {
         transform: rotate(2.5deg);
       }
@@ -3061,12 +3163,11 @@
           <ellipse cx="182" cy="328" rx="46" ry="7.5" fill="#7a6250" opacity=".22" />
 
           <!-- Bride & Groom Video (A little smaller, perfectly proportioned) -->
-          <foreignObject class="couple-video-fo" x="45" y="158" width="316" height="178" style="overflow:visible; pointer-events:none;">
-            <video xmlns="http://www.w3.org/1999/xhtml"
-                   class="couple-video"
-                   src="gemini_generated_video_22e82091-nobg.webm"
-                   autoplay loop muted playsinline
-                   style="width: 100%; height: 100%; display: block; object-fit: contain; pointer-events: none; filter: drop-shadow(0 5px 12px rgba(138,47,74,0.18));">
+          <foreignObject class="couple-video-fo" x="45" y="158" width="316" height="178"
+            style="overflow:visible; pointer-events:none;">
+            <video xmlns="http://www.w3.org/1999/xhtml" class="couple-video"
+              src="./gemini_generated_video_22e82091-nobg.webm" autoplay loop muted playsinline
+              style="width: 100%; height: 100%; display: block; object-fit: contain; pointer-events: none; filter: drop-shadow(0 5px 12px rgba(138,47,74,0.18));">
             </video>
           </foreignObject>
           <g class="cx" aria-hidden="true">
@@ -3292,89 +3393,95 @@
           <svg viewBox="0 0 140 92">
             <defs>
               <linearGradient id="rbGradL" x1="1" y1="0.6" x2="0" y2="0.2">
-                <stop offset="0%" stop-color="#b83359"/>
-                <stop offset="24%" stop-color="#d85a7e"/>
-                <stop offset="65%" stop-color="#f391aa"/>
-                <stop offset="94%" stop-color="#fedfe7"/>
-                <stop offset="100%" stop-color="#fff2f5"/>
+                <stop offset="0%" stop-color="#b83359" />
+                <stop offset="24%" stop-color="#d85a7e" />
+                <stop offset="65%" stop-color="#f391aa" />
+                <stop offset="94%" stop-color="#fedfe7" />
+                <stop offset="100%" stop-color="#fff2f5" />
               </linearGradient>
               <linearGradient id="rbGradR" x1="0" y1="0.6" x2="1" y2="0.2">
-                <stop offset="0%" stop-color="#b83359"/>
-                <stop offset="24%" stop-color="#d85a7e"/>
-                <stop offset="65%" stop-color="#f391aa"/>
-                <stop offset="94%" stop-color="#fedfe7"/>
-                <stop offset="100%" stop-color="#fff2f5"/>
+                <stop offset="0%" stop-color="#b83359" />
+                <stop offset="24%" stop-color="#d85a7e" />
+                <stop offset="65%" stop-color="#f391aa" />
+                <stop offset="94%" stop-color="#fedfe7" />
+                <stop offset="100%" stop-color="#fff2f5" />
               </linearGradient>
               <linearGradient id="rbDeepShadow" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#6e152e"/>
-                <stop offset="60%" stop-color="#962444"/>
-                <stop offset="100%" stop-color="#b83a5f"/>
+                <stop offset="0%" stop-color="#6e152e" />
+                <stop offset="60%" stop-color="#962444" />
+                <stop offset="100%" stop-color="#b83a5f" />
               </linearGradient>
               <linearGradient id="rbTailL" x1="0.75" y1="0" x2="0.15" y2="1">
-                <stop offset="0%" stop-color="#b03257"/>
-                <stop offset="30%" stop-color="#d65b7f"/>
-                <stop offset="70%" stop-color="#ea7999"/>
-                <stop offset="100%" stop-color="#f8a9bd"/>
+                <stop offset="0%" stop-color="#b03257" />
+                <stop offset="30%" stop-color="#d65b7f" />
+                <stop offset="70%" stop-color="#ea7999" />
+                <stop offset="100%" stop-color="#f8a9bd" />
               </linearGradient>
               <linearGradient id="rbTailR" x1="0.25" y1="0" x2="0.85" y2="1">
-                <stop offset="0%" stop-color="#b03257"/>
-                <stop offset="30%" stop-color="#d65b7f"/>
-                <stop offset="70%" stop-color="#ea7999"/>
-                <stop offset="100%" stop-color="#f8a9bd"/>
+                <stop offset="0%" stop-color="#b03257" />
+                <stop offset="30%" stop-color="#d65b7f" />
+                <stop offset="70%" stop-color="#ea7999" />
+                <stop offset="100%" stop-color="#f8a9bd" />
               </linearGradient>
               <linearGradient id="rbKnotGrad" x1="0.2" y1="0" x2="0.8" y2="1">
-                <stop offset="0%" stop-color="#fcaec0"/>
-                <stop offset="35%" stop-color="#de5f82"/>
-                <stop offset="75%" stop-color="#a8294c"/>
-                <stop offset="100%" stop-color="#781832"/>
+                <stop offset="0%" stop-color="#fcaec0" />
+                <stop offset="35%" stop-color="#de5f82" />
+                <stop offset="75%" stop-color="#a8294c" />
+                <stop offset="100%" stop-color="#781832" />
               </linearGradient>
               <linearGradient id="rbGoldAccent" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#fef0b8"/>
-                <stop offset="40%" stop-color="#dfb559"/>
-                <stop offset="75%" stop-color="#b88e36"/>
-                <stop offset="100%" stop-color="#785614"/>
+                <stop offset="0%" stop-color="#fef0b8" />
+                <stop offset="40%" stop-color="#dfb559" />
+                <stop offset="75%" stop-color="#b88e36" />
+                <stop offset="100%" stop-color="#785614" />
               </linearGradient>
             </defs>
 
             <!-- Hanging Tails Behind -->
             <g>
               <g class="ribbon-tail-l">
-                <path d="M 65 30 C 58 42 47 60 38 88 L 49 79 L 58 85 C 62 62 67 46 71 31 Z" fill="url(#rbTailL)"/>
-                <path d="M 49 79 C 55 58 63 45 66 31" stroke="rgba(255,255,255,0.45)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-                <path d="M 65 30 C 67 36 68 40 70 43 C 71 39 71 35 71 31 Z" fill="rgba(80,10,30,0.35)"/>
+                <path d="M 65 30 C 58 42 47 60 38 88 L 49 79 L 58 85 C 62 62 67 46 71 31 Z" fill="url(#rbTailL)" />
+                <path d="M 49 79 C 55 58 63 45 66 31" stroke="rgba(255,255,255,0.45)" stroke-width="1.8" fill="none"
+                  stroke-linecap="round" />
+                <path d="M 65 30 C 67 36 68 40 70 43 C 71 39 71 35 71 31 Z" fill="rgba(80,10,30,0.35)" />
               </g>
               <g class="ribbon-tail-r">
-                <path d="M 75 30 C 82 42 93 60 102 88 L 91 79 L 82 85 C 78 62 73 46 69 31 Z" fill="url(#rbTailR)"/>
-                <path d="M 91 79 C 85 58 77 45 74 31" stroke="rgba(255,255,255,0.45)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-                <path d="M 75 30 C 73 36 72 40 70 43 C 69 39 69 35 69 31 Z" fill="rgba(80,10,30,0.35)"/>
+                <path d="M 75 30 C 82 42 93 60 102 88 L 91 79 L 82 85 C 78 62 73 46 69 31 Z" fill="url(#rbTailR)" />
+                <path d="M 91 79 C 85 58 77 45 74 31" stroke="rgba(255,255,255,0.45)" stroke-width="1.8" fill="none"
+                  stroke-linecap="round" />
+                <path d="M 75 30 C 73 36 72 40 70 43 C 69 39 69 35 69 31 Z" fill="rgba(80,10,30,0.35)" />
               </g>
             </g>
 
             <!-- Inner loop cavities (dark shadow interior) -->
-            <path d="M 65 27 C 48 20 25 15 21 24 C 18 33 34 38 64 31 Z" fill="url(#rbDeepShadow)"/>
-            <path d="M 75 27 C 92 20 115 15 119 24 C 122 33 106 38 76 31 Z" fill="url(#rbDeepShadow)"/>
+            <path d="M 65 27 C 48 20 25 15 21 24 C 18 33 34 38 64 31 Z" fill="url(#rbDeepShadow)" />
+            <path d="M 75 27 C 92 20 115 15 119 24 C 122 33 106 38 76 31 Z" fill="url(#rbDeepShadow)" />
 
             <!-- Main Loops (Front satin) -->
             <g class="ribbon-loop-l">
-              <path d="M 66 26 C 54 12 28 4 15 15 C 3 26 10 40 30 38 C 45 36 59 31 66 29 Z" fill="url(#rbGradL)"/>
-              <path d="M 63 23 C 51 12 30 8 18 17 C 10 24 11 32 23 35" stroke="rgba(255,255,255,0.7)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+              <path d="M 66 26 C 54 12 28 4 15 15 C 3 26 10 40 30 38 C 45 36 59 31 66 29 Z" fill="url(#rbGradL)" />
+              <path d="M 63 23 C 51 12 30 8 18 17 C 10 24 11 32 23 35" stroke="rgba(255,255,255,0.7)" stroke-width="2.2"
+                fill="none" stroke-linecap="round" />
             </g>
             <g class="ribbon-loop-r">
-              <path d="M 74 26 C 86 12 112 4 125 15 C 137 26 130 40 110 38 C 95 36 81 31 74 29 Z" fill="url(#rbGradR)"/>
-              <path d="M 77 23 C 89 12 110 8 122 17 C 130 24 129 32 117 35" stroke="rgba(255,255,255,0.7)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+              <path d="M 74 26 C 86 12 112 4 125 15 C 137 26 130 40 110 38 C 95 36 81 31 74 29 Z"
+                fill="url(#rbGradR)" />
+              <path d="M 77 23 C 89 12 110 8 122 17 C 130 24 129 32 117 35" stroke="rgba(255,255,255,0.7)"
+                stroke-width="2.2" fill="none" stroke-linecap="round" />
             </g>
 
             <!-- Center Knot -->
             <g>
-              <path d="M 61 21 C 61 17 79 17 79 21 C 81 27 79 33 78 37 C 77 41 63 41 62 37 C 61 33 59 27 61 21 Z" fill="url(#rbKnotGrad)"/>
-              <path d="M 64 22 C 65 27 65 31 65 36" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" fill="none"/>
-              <path d="M 76 22 C 75 27 75 31 75 36" stroke="rgba(80,10,30,0.5)" stroke-width="1.5" fill="none"/>
+              <path d="M 61 21 C 61 17 79 17 79 21 C 81 27 79 33 78 37 C 77 41 63 41 62 37 C 61 33 59 27 61 21 Z"
+                fill="url(#rbKnotGrad)" />
+              <path d="M 64 22 C 65 27 65 31 65 36" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" fill="none" />
+              <path d="M 76 22 C 75 27 75 31 75 36" stroke="rgba(80,10,30,0.5)" stroke-width="1.5" fill="none" />
               <!-- Center Pearl & Gold Brooch -->
-              <ellipse cx="70" cy="28" rx="6" ry="7" fill="url(#rbGoldAccent)"/>
-              <circle cx="70" cy="28" r="4.8" fill="#fffdfa"/>
-              <circle cx="68.8" cy="26.5" r="1.5" fill="#ffffff"/>
-              <circle cx="70" cy="28" r="4.8" fill="none" stroke="#caa24f" stroke-width="1"/>
-              <circle cx="70" cy="28" r="1.8" fill="#f5a3b8" opacity=".6"/>
+              <ellipse cx="70" cy="28" rx="6" ry="7" fill="url(#rbGoldAccent)" />
+              <circle cx="70" cy="28" r="4.8" fill="#fffdfa" />
+              <circle cx="68.8" cy="26.5" r="1.5" fill="#ffffff" />
+              <circle cx="70" cy="28" r="4.8" fill="none" stroke="#caa24f" stroke-width="1" />
+              <circle cx="70" cy="28" r="1.8" fill="#f5a3b8" opacity=".6" />
             </g>
           </svg>
         </div>
@@ -3455,7 +3562,7 @@
               window.removeEventListener(evt, startAudio);
               document.removeEventListener(evt, startAudio);
             });
-          }).catch(() => {});
+          }).catch(() => { });
         }
       };
       startAudio();
@@ -3495,12 +3602,79 @@
       }
     });
 
-    $('sceneFinal').appendChild(Object.assign($('sceneSvg').cloneNode(true), {}));
-    $('sceneFinal').firstChild.removeAttribute('id');
+    // Finale scene: clone tree & canopy, but replace bride & groom video with couple-dance.png
+    const finalSvg = $('sceneSvg').cloneNode(true);
+    finalSvg.removeAttribute('id');
+    finalSvg.setAttribute('aria-label', 'A cherry blossom tree with Soloman and Tania dancing beneath it');
+
+    const finalVideoFo = finalSvg.querySelector('.couple-video-fo');
+    if (finalVideoFo) {
+      const danceFo = document.createElementNS(NS, 'foreignObject');
+      danceFo.setAttribute('class', 'finale-dancer-fo');
+      danceFo.setAttribute('x', '77');
+      danceFo.setAttribute('y', '136');
+      danceFo.setAttribute('width', '210');
+      danceFo.setAttribute('height', '192');
+      danceFo.setAttribute('tabindex', '0');
+      danceFo.setAttribute('role', 'button');
+      danceFo.setAttribute('aria-label', 'Soloman and Tania dancing. Tap to twirl and shower petals.');
+      danceFo.setAttribute('title', 'Tap to celebrate with Soloman & Tania! 🌸');
+
+      const wrap = document.createElement('div');
+      wrap.className = 'finale-dancer-wrap';
+
+      const img = document.createElement('img');
+      img.src = 'couple-dance.png';
+      img.alt = 'Soloman and Tania dancing together';
+      img.className = 'finale-dancer-img';
+      img.id = 'finaleDancerImg';
+      img.loading = 'eager';
+
+      wrap.appendChild(img);
+      danceFo.appendChild(wrap);
+      finalVideoFo.replaceWith(danceFo);
+    }
+
+    const finalShadow = finalSvg.querySelector('ellipse[cy="328"]');
+    if (finalShadow) {
+      finalShadow.setAttribute('rx', '66');
+      finalShadow.setAttribute('ry', '9');
+      finalShadow.setAttribute('class', 'finale-ground-shadow');
+    }
+
+    // Remove the glittering star animation from the groom's face in the finale
+    finalSvg.querySelectorAll('.tw2').forEach(tw => {
+      const d = tw.getAttribute('d') || '';
+      if (d.includes('236') && d.includes('146')) {
+        tw.remove();
+      }
+    });
+
+    $('sceneFinal').appendChild(finalSvg);
+
+    const finaleDancer = $('sceneFinal').querySelector('.finale-dancer-fo');
+    if (finaleDancer) {
+      const triggerFinaleDance = e => {
+        burst(e.currentTarget || finaleDancer);
+        const img = finaleDancer.querySelector('.finale-dancer-img');
+        if (img && !img.classList.contains('is-twirling')) {
+          img.classList.add('is-twirling');
+          setTimeout(() => img.classList.remove('is-twirling'), 1400);
+        }
+      };
+      finaleDancer.addEventListener('click', triggerFinaleDance);
+      finaleDancer.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          triggerFinaleDance(e);
+        }
+      });
+    }
+
     const playVideos = () => {
       document.querySelectorAll('.couple-video').forEach(v => {
         v.muted = true;
-        v.play().catch(() => {});
+        v.play().catch(() => { });
       });
     };
     playVideos();

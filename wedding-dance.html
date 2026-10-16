@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wedding Dance</title>
+<style>
+  :root {
+    --gold: #f3d9a4;
+    --rose: #f7b6c6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; overflow: hidden; }
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: radial-gradient(ellipse at 50% 30%, #3b1f3f 0%, #1c0f26 55%, #0b0610 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+  }
+
+  /* drifting colour glow behind the couple */
+  .glow {
+    position: absolute; width: 70vmin; height: 70vmin; border-radius: 50%;
+    background: radial-gradient(circle, rgba(247,182,198,.55), rgba(243,217,164,.25) 45%, transparent 70%);
+    filter: blur(30px);
+    animation: glowPulse 5s ease-in-out infinite alternate, glowDrift 14s ease-in-out infinite alternate;
+  }
+  @keyframes glowPulse { from { opacity:.55; transform: scale(.9);} to { opacity:1; transform: scale(1.15);} }
+  @keyframes glowDrift { from { translate: -6vmin 0; } to { translate: 6vmin -3vmin; } }
+
+  /* spotlight rays */
+  .rays {
+    position: absolute; inset: -30%;
+    background: repeating-conic-gradient(from 0deg at 50% 40%, rgba(255,255,255,.07) 0 6deg, transparent 6deg 18deg);
+    animation: spin 60s linear infinite;
+    mask-image: radial-gradient(circle at 50% 40%, #000 0%, transparent 65%);
+    -webkit-mask-image: radial-gradient(circle at 50% 40%, #000 0%, transparent 65%);
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* stage */
+  .stage {
+    position: relative; height: 82vh; max-width: 92vw;
+    display: flex; align-items: flex-end; justify-content: center;
+    z-index: 2;
+  }
+  .dancer {
+    height: 100%; width: auto; max-width: 100%; object-fit: contain;
+    transform-origin: 50% 100%;
+    animation: dance 4s ease-in-out infinite;
+    filter: drop-shadow(0 20px 25px rgba(0,0,0,.45));
+    will-change: transform;
+  }
+  /* waltz: sway, lift, a little twirl-tilt, and a soft 3D turn */
+  @keyframes dance {
+    0%   { transform: translateY(0)     rotate(-2.2deg) scaleX(1)    perspective(900px) rotateY(0deg); }
+    25%  { transform: translateY(-14px) rotate(0deg)    scaleX(1.01) perspective(900px) rotateY(7deg); }
+    50%  { transform: translateY(0)     rotate(2.2deg)  scaleX(1)    perspective(900px) rotateY(0deg); }
+    75%  { transform: translateY(-14px) rotate(0deg)    scaleX(1.01) perspective(900px) rotateY(-7deg); }
+    100% { transform: translateY(0)     rotate(-2.2deg) scaleX(1)    perspective(900px) rotateY(0deg); }
+  }
+
+  /* shimmer sweep across the dress */
+  .shine {
+    position: absolute; inset: 0; pointer-events: none;
+    -webkit-mask-image: var(--img); mask-image: var(--img);
+    -webkit-mask-size: contain; mask-size: contain;
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-position: center bottom; mask-position: center bottom;
+    background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.65) 50%, transparent 65%);
+    background-size: 250% 100%;
+    animation: sweep 4s ease-in-out infinite, dance 4s ease-in-out infinite;
+    transform-origin: 50% 100%;
+    mix-blend-mode: soft-light;
+  }
+  @keyframes sweep { 0% { background-position: 180% 0; } 60%,100% { background-position: -80% 0; } }
+
+  /* floor reflection / shadow */
+  .floor {
+    position: absolute; bottom: 4vh; left: 50%; width: 55vh; height: 6vh;
+    translate: -50% 0; border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(0,0,0,.55), transparent 70%);
+    animation: shadowPulse 4s ease-in-out infinite; z-index: 1;
+  }
+  @keyframes shadowPulse { 0%,50%,100% { transform: scaleX(1); opacity:.9;} 25%,75% { transform: scaleX(.85); opacity:.6;} }
+
+  /* particles */
+  .particle { position: absolute; top: -10vh; z-index: 3; pointer-events: none; will-change: transform; }
+  .petal {
+    width: 14px; height: 18px; background: radial-gradient(circle at 30% 30%, #fff, var(--rose));
+    border-radius: 80% 0 80% 0; opacity: .9;
+    animation: fall linear infinite, sway ease-in-out infinite alternate;
+  }
+  @keyframes fall { to { top: 110vh; } }
+  @keyframes sway { from { transform: translateX(-30px) rotate(0deg); } to { transform: translateX(40px) rotate(360deg); } }
+
+  .heart {
+    position: absolute; bottom: 8vh; z-index: 3; pointer-events: none;
+    color: #ff7f9d; font-size: 22px; opacity: 0;
+    animation: rise linear infinite;
+  }
+  @keyframes rise {
+    0% { transform: translateY(0) scale(.5); opacity: 0; }
+    15% { opacity: .95; }
+    100% { transform: translateY(-65vh) translateX(var(--dx)) scale(1.3); opacity: 0; }
+  }
+
+  .sparkle {
+    position: absolute; z-index: 3; pointer-events: none;
+    width: 10px; height: 10px; background: #fff;
+    clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+    animation: twinkle ease-in-out infinite; opacity: 0;
+    filter: drop-shadow(0 0 6px #fff);
+  }
+  @keyframes twinkle { 0%,100% { opacity:0; transform: scale(.2) rotate(0);} 50% { opacity:1; transform: scale(1.4) rotate(90deg);} }
+
+  /* title */
+  .title {
+    position: absolute; top: 4vh; width: 100%; text-align: center; z-index: 4;
+    font-size: clamp(1.4rem, 4vw, 2.6rem); letter-spacing: .18em;
+    background: linear-gradient(90deg, var(--gold), #fff, var(--gold));
+    background-size: 200% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: titleShine 5s linear infinite, fadeDown 2s ease-out both;
+  }
+  .title small { display:block; font-size:.4em; letter-spacing:.5em; margin-top:.4em; opacity:.8; }
+  @keyframes titleShine { to { background-position: 200% 0; } }
+  @keyframes fadeDown { from { opacity:0; transform: translateY(-20px);} to { opacity:1; transform:none;} }
+
+  .missing {
+    display:none; position:absolute; z-index:10; max-width: 80vw; text-align:center;
+    background: rgba(0,0,0,.6); padding: 1.2rem 1.6rem; border-radius: 12px; font-family: system-ui, sans-serif;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+  }
+</style>
+</head>
+<body>
+  <div class="rays"></div>
+  <div class="glow"></div>
+
+  <div class="title">Just Married<small>THE FIRST DANCE</small></div>
+
+  <div class="stage">
+    <img class="dancer" id="dancer" src="couple.png" alt="Bride and groom dancing">
+    <div class="shine" id="shine"></div>
+  </div>
+  <div class="floor"></div>
+
+  <div class="missing" id="missing">
+    Save your photo in the same folder as this file and name it <b>couple.png</b>, then refresh.
+  </div>
+
+<script>
+  const img = document.getElementById('dancer');
+  const shine = document.getElementById('shine');
+  shine.style.setProperty('--img', 'url("couple.png")');
+  img.addEventListener('error', () => document.getElementById('missing').style.display = 'block');
+
+  const rand = (a, b) => Math.random() * (b - a) + a;
+
+  // falling petals
+  for (let i = 0; i < 28; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle petal';
+    p.style.left = rand(0, 100) + 'vw';
+    p.style.animationDuration = rand(7, 14) + 's, ' + rand(2.5, 5) + 's';
+    p.style.animationDelay = rand(-14, 0) + 's, ' + rand(-5, 0) + 's';
+    p.style.transform = 'scale(' + rand(.6, 1.3) + ')';
+    document.body.appendChild(p);
+  }
+
+  // rising hearts
+  for (let i = 0; i < 12; i++) {
+    const h = document.createElement('div');
+    h.className = 'heart';
+    h.textContent = '❤';
+    h.style.left = rand(30, 70) + 'vw';
+    h.style.setProperty('--dx', rand(-60, 60) + 'px');
+    h.style.animationDuration = rand(5, 9) + 's';
+    h.style.animationDelay = rand(0, 8) + 's';
+    h.style.fontSize = rand(14, 30) + 'px';
+    document.body.appendChild(h);
+  }
+
+  // twinkling sparkles
+  for (let i = 0; i < 30; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.style.left = rand(5, 95) + 'vw';
+    s.style.top = rand(8, 90) + 'vh';
+    s.style.animationDuration = rand(1.5, 3.5) + 's';
+    s.style.animationDelay = rand(0, 4) + 's';
+    document.body.appendChild(s);
+  }
+
+  // click / tap for a burst of hearts
+  document.body.addEventListener('click', e => {
+    for (let i = 0; i < 8; i++) {
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.textContent = Math.random() > .5 ? '❤' : '✨';
+      h.style.left = e.clientX + 'px';
+      h.style.bottom = (innerHeight - e.clientY) + 'px';
+      h.style.setProperty('--dx', rand(-80, 80) + 'px');
+      h.style.animationDuration = rand(2, 3.5) + 's';
+      h.style.animationIterationCount = '1';
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 4000);
+    }
+  });
+</script>
+</body>
+</html>
