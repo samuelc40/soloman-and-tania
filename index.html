@@ -1839,8 +1839,157 @@
     }
 
     .pol .ph.has::before,
-    .pol .ph.has svg {
+    .pol .ph.has>svg {
       display: none
+    }
+
+    .pol .ph.has .pol-play-badge svg {
+      display: block !important
+    }
+
+    .pol .ph video.pol-vid {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 3px;
+      display: block;
+      pointer-events: none;
+      background: #000;
+    }
+
+    .pol.has-vid {
+      cursor: pointer;
+    }
+
+    .pol-play-badge {
+      position: absolute;
+      right: 8px;
+      bottom: 8px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(45, 18, 28, .55);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, .25);
+      transition: transform .3s ease, background .3s ease;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .pol-play-badge svg {
+      width: 12px;
+      height: 12px;
+      margin-left: 2px;
+      fill: currentColor;
+      filter: none;
+    }
+
+    .pol:hover .pol-play-badge,
+    .pol:focus-visible .pol-play-badge {
+      transform: scale(1.15);
+      background: rgba(165, 59, 91, .85);
+    }
+
+    /* Video Lightbox / Modal */
+    .vid-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 130;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      transition: opacity .35s ease;
+    }
+
+    .vid-modal.vis {
+      opacity: 1;
+    }
+
+    .vid-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(38, 14, 22, 0.78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .vid-modal-card {
+      position: relative;
+      z-index: 2;
+      width: min(540px, 94vw);
+      background: #fffdfa;
+      border-radius: 24px;
+      padding: 14px 14px 18px;
+      box-shadow: 0 24px 60px rgba(45, 12, 22, .5), 0 0 0 1px rgba(239, 197, 206, .6);
+      transform: scale(.88) translateY(20px);
+      transition: transform .45s cubic-bezier(.34, 1.4, .64, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .vid-modal.vis .vid-modal-card {
+      transform: none;
+    }
+
+    .vid-modal-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(224, 112, 143, .3);
+      background: #fff5f7;
+      color: var(--burg);
+      font-size: 16px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: all .25s ease;
+      z-index: 5;
+    }
+
+    .vid-modal-close:hover {
+      background: var(--burg);
+      color: #fff;
+      transform: scale(1.08) rotate(90deg);
+    }
+
+    .vid-modal-player-wrap {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .15);
+      max-height: 70vh;
+    }
+
+    .vid-modal-player-wrap video {
+      width: 100%;
+      max-height: 70vh;
+      display: block;
+      border-radius: 16px;
+      outline: none;
+    }
+
+    .vid-modal-caption {
+      font: 400 clamp(24px, 5.5vw, 32px)/1.2 'Great Vibes', cursive;
+      color: var(--burg);
+      margin-top: 12px;
+      text-align: center;
     }
 
     .pol .ph svg {
@@ -1943,15 +2092,19 @@
       0% {
         transform: translateY(0) rotate(-1.5deg) scaleX(1);
       }
+
       25% {
         transform: translateY(-5px) rotate(0deg) scaleX(1.01) perspective(700px) rotateY(4deg);
       }
+
       50% {
         transform: translateY(0) rotate(1.5deg) scaleX(1);
       }
+
       75% {
         transform: translateY(-5px) rotate(0deg) scaleX(1.01) perspective(700px) rotateY(-4deg);
       }
+
       100% {
         transform: translateY(0) rotate(-1.5deg) scaleX(1);
       }
@@ -1966,12 +2119,15 @@
       0% {
         transform: translateY(0) rotate(0deg) scale(1);
       }
+
       25% {
         transform: translateY(-15px) rotate(-10deg) scale(1.06);
       }
+
       65% {
         transform: translateY(-7px) rotate(350deg) scale(1.03);
       }
+
       100% {
         transform: translateY(0) rotate(360deg) scale(1);
       }
@@ -1983,17 +2139,23 @@
     }
 
     @keyframes finaleShadowPulse {
-      0%, 50%, 100% {
+
+      0%,
+      50%,
+      100% {
         transform: scaleX(1);
         opacity: 0.26;
       }
-      25%, 75% {
+
+      25%,
+      75% {
         transform: scaleX(0.9);
         opacity: 0.18;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
+
       .finale-dancer-img,
       .finale-ground-shadow {
         animation: none !important;
@@ -3499,9 +3661,10 @@
         <p class="lbl">Time</p>
         <p class="v" data-c="time"></p>
         <p class="lbl">Venue</p>
-        <p class="v">St. Mary's Church,<br>Kerala</p>
+        <p class="v">St. Raphael's Church,<br>Thykoodam</p>
         <div class="rec">
           <p class="lbl" style="margin-top:0">Reception</p>
+          <p class="v">St.Raphael's Parish Hall<br>Thykoodam</p>
           <p class="v" data-c="receptionTime"></p>
         </div>
         <p class="sm" style="margin-top:16px">Your presence would make our celebration<br>even more special.</p>
@@ -3539,15 +3702,28 @@
     </div>
   </div>
 
+  <!-- video lightbox modal -->
+  <div id="vidModal" class="vid-modal" role="dialog" aria-modal="true" aria-label="Video memory">
+    <div class="vid-modal-backdrop"></div>
+    <div class="vid-modal-card">
+      <button class="vid-modal-close" id="vidCloseBtn" aria-label="Close video">✕</button>
+      <div class="vid-modal-player-wrap">
+        <video id="vidModalPlayer" controls playsinline></video>
+      </div>
+      <div class="vid-modal-caption" id="vidModalCaption"></div>
+    </div>
+  </div>
+
   <script>
     /* ============ EDIT YOUR DETAILS HERE (currently dummy details) ============ */
     const CONFIG = {
       groom: 'Soloman Joseph', bride: 'Tania Biju', groomShort: 'Soloman', brideShort: 'Tania',
-      date: 'Saturday, 24 January 2027', time: '10:30 AM',
-      church: "St. Mary's Church", state: 'Kerala', address: '123 Example Road, Kochi, Kerala',
-      receptionTime: '12:30 PM onwards', receptionVenue: 'Rose Garden Convention Centre', receptionCity: 'Kochi, Kerala',
+      date: 'Wednesday, 27 January 2027', time: '11:00 AM',
+      church: "St. Raphael's Roman Catholic Church", state: 'Thykoodam', address: 'Thykoodam, Kochi, Kerala',
+      receptionTime: '12:30 PM onwards', receptionVenue: "St.Raphael's Parish Hall", receptionCity: 'Thykoodam, Kochi, Kerala',
       mapLink: '',                      // optional: paste a Google Maps share link (otherwise a search by church name and address is used)
-      photos: []                        // optional: up to 5 photo links, e.g. ['photos/1.jpg', ...]
+      photos: ['video1.mp4', 'video2.mp4', 'video3.mp4', 'video4.mp4', 'video5.mp4'],
+      videos: ['video1.mp4', 'video2.mp4', 'video3.mp4', 'video4.mp4', 'video5.mp4']
     };
     const $ = id => document.getElementById(id), NS = 'http://www.w3.org/2000/svg', C = CONFIG;
 
@@ -3672,7 +3848,7 @@
     }
 
     const playVideos = () => {
-      document.querySelectorAll('.couple-video').forEach(v => {
+      document.querySelectorAll('.couple-video, .pol-vid').forEach(v => {
         v.muted = true;
         v.play().catch(() => { });
       });
@@ -3709,7 +3885,14 @@
     }
 
     // view more
-    const rvl = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); rvl.unobserve(e.target); } }), { threshold: .2 });
+    const rvl = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        const v = e.target.querySelector('video.pol-vid');
+        if (v && v.paused) { v.muted = true; v.play().catch(() => { }); }
+        rvl.unobserve(e.target);
+      }
+    }), { threshold: .2 });
     document.querySelectorAll('.rvl').forEach(e => rvl.observe(e));
     const toMore = () => $('more').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
 
@@ -3757,10 +3940,82 @@
     };
     $('dirBtn').onclick = e => { burst(e.currentTarget); window.open(C.mapLink || 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(`${C.church}, ${C.address}`), '_blank'); };
     const GAL = [['Our first chapter', 'heart', '#fbd5cf', '#f4a9b8', -3], ['Little moments', 'blossom', '#fde4d3', '#f7b9a1', 2.5], ['Always better together', 'rings', '#f6dce6', '#e9a5c2', 2], ['Where it all began', 'church', '#e6efdc', '#bfd6b6', -2.5], ['Forever sounds good', 'heart', '#f9dcd8', '#efc3c6', 1]];
-    $('gal').innerHTML = GAL.map((g, i) => { const ph = C.photos && C.photos[i]; return `<figure class="pol rvl" tabindex="0" style="--r:${g[4]}deg;--i:${i % 2}"><div class="ph${ph ? ' has' : ''}" style="--c1:${g[2]};--c2:${g[3]}${ph ? `;background-image:url('${ph}')` : ''}"><svg viewBox="0 0 100 100"><use href="#${g[1] === 'blossom' ? 'blossom' : g[1]}"/></svg></div><figcaption>${g[0]}</figcaption></figure>`; }).join('');
+    const defaultVids = ['video1.mp4', 'video2.mp4', 'video3.mp4', 'video4.mp4', 'video5.mp4'];
+    const isVid = src => typeof src === 'string' && /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(src);
+
+    $('gal').innerHTML = GAL.map((g, i) => {
+      const media = (C.videos && C.videos[i]) || (C.photos && C.photos[i]) || defaultVids[i];
+      const hasMedia = !!media;
+      const vid = hasMedia && isVid(media) ? media : null;
+      const img = hasMedia && !vid ? media : null;
+
+      if (vid) {
+        return `<figure class="pol rvl has-vid" tabindex="0" style="--r:${g[4]}deg;--i:${i % 2}" data-vid="${vid}" data-title="${g[0]}"><div class="ph has has-vid" style="--c1:${g[2]};--c2:${g[3]}"><video class="pol-vid" src="${vid}" autoplay loop muted playsinline preload="metadata"></video><div class="pol-play-badge" aria-hidden="true" title="Tap to watch with sound"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div><figcaption>${g[0]}</figcaption></figure>`;
+      } else if (img) {
+        return `<figure class="pol rvl" tabindex="0" style="--r:${g[4]}deg;--i:${i % 2}"><div class="ph has" style="--c1:${g[2]};--c2:${g[3]};background-image:url('${img}')"></div><figcaption>${g[0]}</figcaption></figure>`;
+      } else {
+        return `<figure class="pol rvl" tabindex="0" style="--r:${g[4]}deg;--i:${i % 2}"><div class="ph" style="--c1:${g[2]};--c2:${g[3]}"><svg viewBox="0 0 100 100"><use href="#${g[1] === 'blossom' ? 'blossom' : g[1]}"/></svg></div><figcaption>${g[0]}</figcaption></figure>`;
+      }
+    }).join('');
+
+    // video modal controls
+    const vidModal = $('vidModal'), vidPlayer = $('vidModalPlayer'), vidCaption = $('vidModalCaption'), vidClose = $('vidCloseBtn');
+    let bgWasPlaying = false;
+
+    function openVidModal(src, title) {
+      if (bgAudio && !bgAudio.paused) { bgAudio.pause(); bgWasPlaying = true; }
+      if (vidPlayer) { vidPlayer.src = src; vidPlayer.currentTime = 0; vidPlayer.muted = false; }
+      if (vidCaption) vidCaption.textContent = title;
+      if (vidModal) {
+        vidModal.style.display = 'flex';
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          vidModal.classList.add('vis');
+          if (vidPlayer) vidPlayer.play().catch(() => { });
+        }));
+      }
+    }
+
+    function closeVidModal() {
+      if (!vidModal) return;
+      vidModal.classList.remove('vis');
+      if (vidPlayer) vidPlayer.pause();
+      setTimeout(() => {
+        vidModal.style.display = 'none';
+        if (vidPlayer) vidPlayer.src = '';
+        if (bgWasPlaying && bgAudio) { bgAudio.play().catch(() => { }); bgWasPlaying = false; }
+      }, 350);
+    }
+
+    if (vidClose) vidClose.onclick = closeVidModal;
+    if (vidModal) {
+      vidModal.addEventListener('click', e => {
+        if (e.target === vidModal || e.target.classList.contains('vid-modal-backdrop')) closeVidModal();
+      });
+    }
+
+    $('gal').addEventListener('click', e => {
+      const card = e.target.closest('.pol[data-vid]');
+      if (!card) return;
+      burst(card);
+      const src = card.getAttribute('data-vid'), title = card.getAttribute('data-title') || '';
+      if (src) openVidModal(src, title);
+    });
+
+    $('gal').addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const card = e.target.closest('.pol[data-vid]');
+        if (card) { e.preventDefault(); burst(card); const src = card.getAttribute('data-vid'), title = card.getAttribute('data-title') || ''; if (src) openVidModal(src, title); }
+      }
+    });
+
     document.querySelectorAll('.pol').forEach(f => { let last = 0; const puff = () => { if (reduce || Date.now() - last < 1500) return; last = Date.now(); for (let i = 0; i < 6; i++) { const p = el('svg', { viewBox: '0 0 24 24', class: 'pp' }); p.appendChild(el('use', { href: '#petal' })); p.style.color = ['#f6b3c4', '#f9ced8', '#f4a6ba'][i % 3]; p.style.left = (14 + Math.random() * 72) + '%'; p.style.setProperty('--dx', (Math.random() * 60 - 30) + 'px'); p.style.animationDelay = i * 90 + 'ms'; f.appendChild(p); setTimeout(() => p.remove(), 2000); } }; f.addEventListener('mouseenter', puff); f.addEventListener('touchstart', puff, { passive: true }); f.addEventListener('focus', puff); });
     document.querySelectorAll('.pol').forEach(e => rvl.observe(e));
-    addEventListener('keydown', e => { if (e.key !== 'Escape') return; if (dlm.classList.contains('on')) closeDl(); else if (ov.classList.contains('on')) closeOv(); });
+    addEventListener('keydown', e => {
+      if (e.key !== 'Escape') return;
+      if (vidModal && vidModal.classList.contains('vis')) closeVidModal();
+      else if (dlm.classList.contains('on')) closeDl();
+      else if (ov.classList.contains('on')) closeOv();
+    });
 
     // ===== v3 decor: branches + blossoms on every page, dividers, butterflies =====
     (function () {
